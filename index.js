@@ -3,6 +3,12 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 
+mongoose.connect("mongodb://localhost/diary_db", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+
 const app = express();
 const PORT = 8000;
 app.use(bodyParser.json());
