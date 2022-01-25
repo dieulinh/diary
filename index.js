@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import auth from "./routes/auth";
+import notes from "./routes/notes";
 
 mongoose.connect("mongodb://localhost/diary_db", {
   useNewUrlParser: true,
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
   res.send('It works')
 });
 auth(app);
+notes(app)
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

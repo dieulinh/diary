@@ -26,10 +26,8 @@ const verifyRegistration = (req, res, next) => {
         return;
       }
 
-
     });
     next();
-
   });
 };
 
