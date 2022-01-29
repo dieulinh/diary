@@ -25,9 +25,9 @@ const verifyRegistration = (req, res, next) => {
         res.status(400).send({ message: 'Failed to register! Email is already in use!'});
         return;
       }
-
+      next();
     });
-    next();
+
   });
 };
 
