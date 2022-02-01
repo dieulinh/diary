@@ -22,6 +22,21 @@ const createNote = (req, res) => {
     })
   })
 };
+const getAllNotes = (req, res) => {
+  User.findOne({username: req.params.username}).exec((err, user) => {
+    if (err) {
+      res.status(500).send({message: err});
+      return;
+    }
+    const notes = Note.find({userId: user._id}).then(data => {
+
+    }).catch(error => {
+      res.status(500).send({message: error.message || "Some errors occurred while fetching notes"});
+      return;
+    })
+  })
+}
 export default {
-  createNote
+  createNote,
+  getAllNotes
 }

@@ -1,3 +1,4 @@
+require('dotenv').config()
 import jwt from "jsonwebtoken";
 
 const verifyToken = (req, res, next) => {
@@ -7,7 +8,7 @@ const verifyToken = (req, res, next) => {
     return res.status(403).send({ message: "No token provided!" });
   }
 
-  jwt.verify(token, "very-top-secret", (err, decoded) => {
+  jwt.verify(token, process.env.APP_SECRET, (err, decoded) => {
     if (err) {
       return res.status(401).send({ message: "Unauthorized!" });
     }

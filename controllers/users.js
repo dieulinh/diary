@@ -26,18 +26,18 @@ export const signIn = (req, res) => {
       res.status(500).send({ message: err});
       return;
     }
+
     if (!user) {
-      res.status(404).send({message: 'User not found'});
-      return;
+      return res.status(404).send({message: 'User not found'});
     }
     const passwordIsValid = bcrypt.compareSync(
       req.body.password, user.password
     );
     if (!passwordIsValid) {
-      res.status(401).send({ message: 'Invalid password', accessToken: null});
-      return;
+      return res.status(401).send({ message: 'Invalid password', accessToken: null});
+
     }
-    const accessToken = jwt.sign({id: user._id}, 'very-top-secret', {expiresIn: 86400});
+    const accessToken = jwt.sign({id: user._id}, process.env.APP_SECRET, {expiresIn: 86400});
     // 24 h
     res.status(200).send({id: user._id, username: user.username, email: user.email, accessToken: accessToken});
   })
