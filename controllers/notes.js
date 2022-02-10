@@ -29,7 +29,7 @@ const getAllNotes = (req, res) => {
       return;
     }
     const notes = Note.find({userId: user._id}).then(data => {
-
+      res.status(200).send(data);
     }).catch(error => {
       res.status(500).send({message: error.message || "Some errors occurred while fetching notes"});
       return;
