@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import auth from "./routes/auth";
 import notes from "./routes/notes";
 
-mongoose.connect("mongodb://localhost/diary_db", {
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@diary-cluster-enna.po0ap.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
