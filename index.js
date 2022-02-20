@@ -12,7 +12,7 @@ mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MO
 
 
 const app = express();
-const PORT = 80;
+const PORT = process.env.PORT || 3000;;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
