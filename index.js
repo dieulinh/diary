@@ -5,14 +5,13 @@ import mongoose from "mongoose";
 import auth from "./routes/auth";
 import notes from "./routes/notes";
 
-mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@diary-cluster-enna.po0ap.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
+mongoose.connect(`${process.env.MONGODB_URL}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-
 const app = express();
-const PORT = process.env.PORT || 3000;;
+const PORT = process.env.PORT || 8000;;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
