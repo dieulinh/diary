@@ -2,8 +2,6 @@ import User from '../models/user';
 import verifyToken from '../middleware/verifyToken';
 import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
-import user from '../models/user';
-
 export const signUp = (req, res) => {
   const user = new User({
     username: req.body.username,
@@ -23,8 +21,7 @@ export const signIn = (req, res) => {
     username: req.body.username
   }).exec((err, user) => {
     if (err) {
-      res.status(500).send({ message: err});
-      return;
+      return res.status(500).send({ message: err});
     }
 
     if (!user) {
@@ -35,7 +32,6 @@ export const signIn = (req, res) => {
     );
     if (!passwordIsValid) {
       return res.status(401).send({ message: 'Invalid password', accessToken: null});
-
     }
     const accessToken = jwt.sign({id: user._id}, process.env.APP_SECRET, {expiresIn: 86400});
     // 24 h
